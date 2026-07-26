@@ -1,8 +1,6 @@
 package com.learningacademy.managers;
 
-import com.learningacademy.pages.DashboardPage;
-import com.learningacademy.pages.HomePage;
-import com.learningacademy.pages.LoginPage;
+import com.learningacademy.pages.*;
 import org.openqa.selenium.WebDriver;
 
 public class PageManager {
@@ -10,9 +8,13 @@ public class PageManager {
         private LoginPage loginPage;
         private DashboardPage dashboardPage;
         private HomePage homePage;
+        private MyCoursesPage myCoursesPage;
+        private CoursePage coursePage;
         public PageManager(WebDriver driver) {
             this.driver = driver;
         }
+
+
 
         public LoginPage loginPage() {
 
@@ -38,5 +40,18 @@ public class PageManager {
 
             return dashboardPage;
         }
+    public MyCoursesPage MyCoursePage() {
+        if (myCoursesPage == null) {
+            myCoursesPage = new MyCoursesPage(driver);
+        }
+        return myCoursesPage;
+    }
+
+    public CoursePage coursePage() {
+        if (coursePage == null) {
+            coursePage = new CoursePage(driver);
+        }
+        return coursePage;
+    }
     }
 
