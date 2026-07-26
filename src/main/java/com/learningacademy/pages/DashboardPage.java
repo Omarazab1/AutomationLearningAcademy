@@ -22,10 +22,10 @@ public class DashboardPage extends BasePage {
     }
 
 //PageChaining
-    public LoginPage logout() {
+    public HomePage logout() {
         openUserMenu();
         click(logoutButton);
-        return new LoginPage(driver);
+        return new HomePage(driver);
     }
     public boolean isAtDashboardPage() {
         return isUserMenuDisplayed();

@@ -45,10 +45,9 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void loginShouldFailWithEmptyCredentials() {
-
         openLoginPage().clickLoginButton();
-
         Assert.assertTrue(
                 pages.loginPage().isLoginErrorDisplayed()
         );
     }}
+

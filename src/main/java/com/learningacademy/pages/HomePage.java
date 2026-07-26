@@ -8,12 +8,16 @@ import org.openqa.selenium.WebDriver;
 public class HomePage  extends BasePage {
     private final By loginLink =
             By.cssSelector("a[href*='login/index.php']");
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
     public LoginPage openLoginPage() {
         click(loginLink);
         return new LoginPage(driver);
+    }
+    public boolean isAtHomePage() {
+        return isDisplayed(loginLink);
     }
 
 }
