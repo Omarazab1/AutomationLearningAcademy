@@ -1,31 +1,63 @@
 package com.learningacademy.base;
-
-import com.learningacademy.driver.DriverFactory;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 
 public class BasePage {
-        protected WebDriver driver;
-        public BasePage() {
-            this.driver = DriverFactory.getDriver();
-            PageFactory.initElements(driver, this);
-        }
-    protected void click(WebElement element) {
-        element.click();
+
+    protected WebDriver driver;
+
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
     }
 
-    protected void type(WebElement element, String text) {
+    /**
+     * Finds and returns a web element.
+     */
+    protected WebElement find(By locator) {
+        return driver.findElement(locator);
+    }
+
+    /**
+     * Click on an element.
+     */
+    protected void click(By locator) {
+        find(locator).click();
+    }
+    /**
+     * Clear the field then enter text.
+     */
+    protected void enterText(By locator, String text) {
+        WebElement element = find(locator);
         element.clear();
         element.sendKeys(text);
     }
 
-    protected String getText(WebElement element) {
-        return element.getText();
+    /**
+     * Returns true if the element is displayed.
+     */
+    protected boolean isDisplayed(By locator) {
+        return find(locator).isDisplayed();
     }
 
-    protected boolean isDisplayed(WebElement element) {
-        return element.isDisplayed();
-    }
+    /**
+     * Returns the text of an element.
+     */
+    protected String getText(By locator) {
+        return find(locator).getText();
     }
 
+    /**
+     * Returns the current page title.
+     */
+    protected String getPageTitle() {
+        return driver.getTitle();
+    }
+
+    /**
+     * Returns the current page URL.
+     */
+    protected String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+}

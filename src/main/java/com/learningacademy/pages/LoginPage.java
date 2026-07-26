@@ -1,39 +1,59 @@
 package com.learningacademy.pages;
 
 import com.learningacademy.base.BasePage;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import com.learningacademy.models.User;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
 
 public class LoginPage extends BasePage {
-    @FindBy(id = "username")
-    private WebElement usernameField;
 
-    @FindBy(id = "password")
-    private WebElement passwordField;
+    // Locators
+    private final By usernameField = By.id("username");
+    private final By passwordField = By.id("password");
+    private final By loginButton = By.id("loginbtn");
+    private final By loginErrorMessage = By.id("loginerrormessage");
 
-    @FindBy(id = "loginbtn")
-    private WebElement loginButton;
+    // Constructor
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
-//    public LoginPage() {
-//        super();     //to call base page constructor (provider) default
-//    }
+    // Actions
+    public DashboardPage login(User user) {
+
+        enterText(usernameField, user.getUsername());
+        enterText(passwordField, user.getPassword());
+        click(loginButton);
+
+        return new DashboardPage(driver);
+    }
 
     public void enterUsername(String username) {
-        type(usernameField, username);
+        enterText(usernameField, username);
     }
 
     public void enterPassword(String password) {
-        type(passwordField, password);
+        enterText(passwordField, password);
     }
 
-    public void clickLogin() {
+    public void clickLoginButton() {
         click(loginButton);
     }
 
-    public DashboardPage login(String username, String password) {
-        enterUsername(username);
-        enterPassword(password);
-        clickLogin();
-        return new DashboardPage();
+    // Validations
+    public boolean isLoginErrorDisplayed() {
+        return isDisplayed(loginErrorMessage);
+    }
+
+    public String getLoginErrorMessage() {
+        return getText(loginErrorMessage)
+                .replace("\n", " ")
+                .replace("\r", "")
+                .trim();
+    }
+
+    public String getPageTitleText() {
+        return getPageTitle();
     }
 }
