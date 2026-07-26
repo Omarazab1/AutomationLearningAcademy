@@ -10,6 +10,8 @@ public class DashboardPage extends BasePage {
     private final By userMenu = By.id("user-menu-toggle");
     private final By dashboardTitle = By.xpath("//h1[text()='Dashboard']");
     private final By logoutButton = By.cssSelector("a[href*='logout.php']");
+    private final By myCourses =
+            By.cssSelector("a[href*='courses.php']");
 
     // Constructor
     public DashboardPage(WebDriver driver) {
@@ -35,6 +37,10 @@ public class DashboardPage extends BasePage {
     // Validations
     public boolean isUserMenuDisplayed() {
         return isDisplayed(userMenu);
+    }
+    public MyCoursesPage openCoursesPage() {
+        click(myCourses);
+        return new MyCoursesPage(driver);
     }
 
     public boolean isDashboardDisplayed() {

@@ -1,5 +1,6 @@
 package com.learningacademy.base;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -37,7 +38,11 @@ public class BasePage {
      * Returns true if the element is displayed.
      */
     protected boolean isDisplayed(By locator) {
-        return find(locator).isDisplayed();
+        try {
+            return driver.findElement(locator).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     /**
