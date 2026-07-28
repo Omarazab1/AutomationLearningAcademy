@@ -10,11 +10,10 @@ public class PageManager {
         private HomePage homePage;
         private MyCoursesPage myCoursesPage;
         private CoursePage coursePage;
+        private ActivityPage activityPage;
         public PageManager(WebDriver driver) {
             this.driver = driver;
         }
-
-
 
         public LoginPage loginPage() {
 
@@ -24,14 +23,14 @@ public class PageManager {
 
             return loginPage;
         }
-    public HomePage homePage() {
+        public HomePage homePage() {
 
-        if (homePage == null) {
+         if (homePage == null) {
             homePage = new HomePage(driver);
-        }
+         }
 
-        return homePage;
-    }
+         return homePage;
+     }
         public DashboardPage dashboardPage() {
 
             if (dashboardPage == null) {
@@ -53,5 +52,11 @@ public class PageManager {
         }
         return coursePage;
     }
+    public ActivityPage activityPage() {
+            if (activityPage == null) {
+                activityPage = new ActivityPage(driver);
+            }
+            return activityPage;
     }
+}
 
