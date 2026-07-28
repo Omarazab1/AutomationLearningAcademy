@@ -14,19 +14,30 @@ public class ActivityTest extends BaseTest {
                 openLoginPage()
                         .login(Users.STUDENT)
                         .openCoursesPage()
-                        .openFirstCourse()
+                        .openCourse("The Impressionists")
                         .openFirstActivity();
 
         Assert.assertTrue(activityPage.isAtActivityPage());
         Assert.assertTrue(activityPage.isActivityTitleDisplayed());
-        Assert.assertEquals(
-                activityPage.getActivityTitle(),
-                "A Guide to Impressionism from the National Gallery"
-        );
+       Assert.assertEquals(
+              activityPage.getActivityTitle(),
+              "A Guide to Impressionism from the National Gallery"
+       );
         Assert.assertTrue(activityPage.isMarkAsDoneButtonDisplayed());
         Assert.assertTrue(activityPage.isBreadcrumbDisplayed());
         Assert.assertTrue(activityPage.isActivityIconDisplayed());
         Assert.assertTrue(activityPage.isMarkAsDoneButtonDisplayed());
+    }
+    @Test
+    public void givenStudentWhenMarksActivityButtonIsDone(){
+        ActivityPage activityPage =
+                openLoginPage()
+                        .login(Users.STUDENT)
+                        .openCoursesPage()
+                        .openCourse("The Impressionists")
+                        .openFirstActivity()
+                        .clickMarkAsDoneButton();
+        Assert.assertTrue(activityPage.isActivityButtonDone());
     }
 }
 

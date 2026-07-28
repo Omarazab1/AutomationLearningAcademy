@@ -15,6 +15,7 @@ public class ActivityPage extends BasePage {
 
     private final By markAsDoneButton =
             By.xpath("//button[contains(.,'Mark as done')]");
+    private final By doneButton = By.cssSelector("button.btn-subtle-success[data-cmid='729']");
     public ActivityPage(WebDriver driver) {
         super(driver);
     }
@@ -32,8 +33,12 @@ public class ActivityPage extends BasePage {
     public boolean isActivityIconDisplayed() {
         return isDisplayed(activityIcon);
     }
-    public String getBreadcrumb() {
-        return getText(breadcrumb);
+   public ActivityPage clickMarkAsDoneButton(){
+        click(markAsDoneButton);
+        return this;
+   }
+    public boolean isActivityButtonDone() {
+        return getText(doneButton).trim().equals("Done");
     }
     public boolean isBreadcrumbDisplayed() {
         return isDisplayed(breadcrumb);
