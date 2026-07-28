@@ -5,6 +5,7 @@ import com.learningacademy.dataProviders.UserDataProvider;
 import com.learningacademy.models.User;
 import com.learningacademy.models.Users;
 import com.learningacademy.pages.DashboardPage;
+import com.learningacademy.pages.LoginPage;
 import com.learningacademy.utils.ConfigReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -49,5 +50,48 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(
                 pages.loginPage().isLoginErrorDisplayed()
         );
-    }}
+    }
+    @Test
+    public void loginShouldFailWithInvalidCredentials() {
+
+        openLoginPage().login(Users.INVALID_CREDENTIALS);
+
+        Assert.assertTrue(
+                pages.loginPage().isLoginErrorDisplayed()
+        );
+
+        Assert.assertEquals(
+                pages.loginPage().getLoginErrorMessage(),
+                ConfigReader.getLoginErrorMessage()
+        );
+    }
+    @Test
+    public void loginShouldFailWithEmptyUsername() {
+
+        openLoginPage().login("", Users.STUDENT.getPassword());
+
+        Assert.assertTrue(
+                pages.loginPage().isLoginErrorDisplayed()
+        );
+
+        Assert.assertEquals(
+                pages.loginPage().getLoginErrorMessage(),
+                ConfigReader.getLoginErrorMessage()
+        );
+    }
+    @Test
+    public void givenEmptyPasswordWhenLoginThenValidationMessageShouldBeDisplayed() {
+
+        LoginPage loginPage = openLoginPage();
+
+        loginPage.login(Users.STUDENT.getUsername(), "");
+
+        Assert.assertEquals(
+                loginPage.getLoginErrorMessage(),
+                ConfigReader.getLoginErrorMessage(),
+                "Validation message should be displayed for empty password."
+        );
+    }
+
+}
 

@@ -32,16 +32,17 @@ public class BasePage {
     /**
      * Click on an element.
      */
-    public void click(By locator) {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
-        element.click();
+    protected void click(By locator) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
     /**
      * Clear the field then enter text.
      */
     protected void enterText(By locator, String text) {
-        WebElement element = find(locator);
+
+        WebElement element =
+                wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+
         element.clear();
         element.sendKeys(text);
     }

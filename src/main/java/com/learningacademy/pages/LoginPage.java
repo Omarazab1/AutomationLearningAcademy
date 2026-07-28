@@ -28,6 +28,14 @@ public class LoginPage extends BasePage {
 
         return new DashboardPage(driver);
     }
+    public LoginPage login(String username, String password) {
+
+        enterText(usernameField, username);
+        enterText(passwordField, password);
+        click(loginButton);
+
+        return this;
+    }
 
     public void enterUsername(String username) {
         enterText(usernameField, username);
