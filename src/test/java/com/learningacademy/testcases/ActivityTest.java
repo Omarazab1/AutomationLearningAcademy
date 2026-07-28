@@ -23,8 +23,10 @@ public class ActivityTest extends BaseTest {
                 activityPage.getActivityTitle(),
                 "A Guide to Impressionism from the National Gallery"
         );
-
-
+        Assert.assertTrue(activityPage.isMarkAsDoneButtonDisplayed());
+        Assert.assertTrue(activityPage.isBreadcrumbDisplayed());
+        Assert.assertTrue(activityPage.isActivityIconDisplayed());
+        Assert.assertTrue(activityPage.isMarkAsDoneButtonDisplayed());
     }
 }
 
