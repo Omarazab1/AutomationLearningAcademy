@@ -5,6 +5,7 @@ import com.learningacademy.models.Users;
 import com.learningacademy.pages.CoursePage;
 import com.learningacademy.pages.MyCoursesPage;
 import com.learningacademy.pages.DashboardPage;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -68,7 +69,7 @@ public class CourseTest extends BaseTest {
                 dashboard.openCoursesPage();
 
         CoursePage coursePage =
-                myCourses.openFirstCourse();
+                myCourses.openCourse("The Impressionists");
         Assert.assertTrue(coursePage.isCoursePageDisplayed());
         Assert.assertTrue(coursePage.isCourseTitleDisplayed());
 
@@ -83,7 +84,7 @@ public class CourseTest extends BaseTest {
                 dashboard.openCoursesPage();
 
         CoursePage coursePage =
-                myCourses.openFirstCourse();
+                myCourses.openCourse("The Impressionists");
 
         Assert.assertTrue(
                 coursePage.isCoursePageDisplayed(),
@@ -104,7 +105,7 @@ public class CourseTest extends BaseTest {
                         .openCoursesPage();
 
         CoursePage coursePage =
-                myCoursesPage.openFirstCourse();
+                myCoursesPage.openCourse("The Impressionists");
 
         coursePage.goBack();
 
@@ -120,7 +121,7 @@ public class CourseTest extends BaseTest {
                 openLoginPage()
                         .login(Users.STUDENT)
                         .openCoursesPage()
-                        .openFirstCourse();
+                        .openCourse("The Impressionists");
 
         Assert.assertTrue(coursePage.isGeneralSectionDisplayed());
 
@@ -135,7 +136,7 @@ public class CourseTest extends BaseTest {
                 openLoginPage()
                         .login(Users.STUDENT)
                         .openCoursesPage()
-                        .openFirstCourse();
+                        .openCourse("The Impressionists");
 
         Assert.assertTrue(
                 coursePage.getActivitiesCount() > 0,
@@ -149,7 +150,7 @@ public class CourseTest extends BaseTest {
                 openLoginPage()
                         .login(Users.STUDENT)
                         .openCoursesPage()
-                        .openFirstCourse();
+                        .openCourse("The Impressionists");
 
         Assert.assertEquals(
                 coursePage.getCourseTitle(),
@@ -163,9 +164,40 @@ public class CourseTest extends BaseTest {
                 openLoginPage()
                         .login(Users.STUDENT)
                         .openCoursesPage()
-                        .openFirstCourse();
+                        .openCourse("The Impressionists");
 
         Assert.assertTrue(coursePage.isCoursePageDisplayed());
     }
+    @Test(description = "Verify that a student can search for a course using the full course name.")
+    public void studentShouldSearchCourseByFullName() {
+
+        MyCoursesPage myCoursesPage =
+                openLoginPage()
+                        .login(Users.STUDENT)
+                        .openCoursesPage();
+
+        myCoursesPage.searchCourse("The Impressionists");
+
+        Assert.assertTrue(
+                myCoursesPage.isCourseDisplayed("The Impressionists"),
+                "The searched course should be displayed."
+        );
+    }
+    @Test(description = "Verify that a student can search for a course using the partial course name.")
+    public void studentShouldSearchCourseByPartialName() {
+
+        MyCoursesPage myCoursesPage =
+                openLoginPage()
+                        .login(Users.STUDENT)
+                        .openCoursesPage();
+
+        myCoursesPage.searchCourse("Impress");
+
+        Assert.assertTrue(
+                myCoursesPage.isCourseDisplayed("The Impressionists"),
+                "Course should be found using partial name."
+        );
+    }
+
 
 }
