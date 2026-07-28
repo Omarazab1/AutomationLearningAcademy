@@ -8,12 +8,32 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class CoursePage extends BasePage {
     private final By courseTitle =
             By.xpath("//h1[contains(text(),'The Impressionists')]");
-    private final By generalSection =
-            By.xpath("//h3[contains(text(),'General')]");
     private final By firstActivity =
             By.xpath("//li[@id='section-1']//div[@class='activityname']//a");
+    private final By generalSection =
+            By.cssSelector("li[data-sectionname='General']");
+    private final By backgroundSection =
+            By.cssSelector("li[data-sectionname='Background']");
+    private final By backgroundContent =
+            By.cssSelector("li[data-sectionname='Background'] div.content.show");
+    private final By activities =
+            By.cssSelector("li[data-sectionname='Background'] li.activity");
+
     public CoursePage(WebDriver driver) {
         super(driver);
+    }
+    public int getActivitiesCount() {
+        return finds(activities).size();
+    }
+    public boolean isGeneralSectionDisplayed() {
+        return isDisplayed(generalSection);
+    }
+    public boolean isBackgroundSectionDisplayed() {
+        return isDisplayed(backgroundSection);
+    }
+
+    public boolean isBackgroundExpanded() {
+        return isDisplayed(backgroundContent);
     }
     public boolean isCoursePageDisplayed() {
         return getCurrentUrl().contains("/course/view.php");

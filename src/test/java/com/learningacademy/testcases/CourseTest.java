@@ -95,4 +95,77 @@ public class CourseTest extends BaseTest {
                 "First activity should be displayed."
         );
     }
+    @Test
+    public void givenStudentWhenNavigateBackFromCourseThenMyCoursesPageShouldBeDisplayed() {
+
+        MyCoursesPage myCoursesPage =
+                openLoginPage()
+                        .login(Users.STUDENT)
+                        .openCoursesPage();
+
+        CoursePage coursePage =
+                myCoursesPage.openFirstCourse();
+
+        coursePage.goBack();
+
+        Assert.assertTrue(
+                myCoursesPage.isAtCoursePage(),
+                "User should be redirected back to My Courses page."
+        );
+    }
+    @Test
+    public void givenStudentWhenOpenCourseThenSectionsShouldBeDisplayed() {
+
+        CoursePage coursePage =
+                openLoginPage()
+                        .login(Users.STUDENT)
+                        .openCoursesPage()
+                        .openFirstCourse();
+
+        Assert.assertTrue(coursePage.isGeneralSectionDisplayed());
+
+        Assert.assertTrue(coursePage.isBackgroundSectionDisplayed());
+
+        Assert.assertTrue(coursePage.isBackgroundExpanded());
+    }
+    @Test
+    public void givenStudentWhenOpenCourseThenActivitiesShouldBeDisplayed() {
+
+        CoursePage coursePage =
+                openLoginPage()
+                        .login(Users.STUDENT)
+                        .openCoursesPage()
+                        .openFirstCourse();
+
+        Assert.assertTrue(
+                coursePage.getActivitiesCount() > 0,
+                "Activities should be displayed."
+        );
+    }
+    @Test
+    public void givenStudentWhenOpenCourseThenCorrectCourseTitleShouldBeDisplayed() {
+
+        CoursePage coursePage =
+                openLoginPage()
+                        .login(Users.STUDENT)
+                        .openCoursesPage()
+                        .openFirstCourse();
+
+        Assert.assertEquals(
+                coursePage.getCourseTitle(),
+                "The Impressionists"
+        );
+    }
+    @Test
+    public void givenStudentWhenOpenCourseThenUrlShouldBeCorrect() {
+
+        CoursePage coursePage =
+                openLoginPage()
+                        .login(Users.STUDENT)
+                        .openCoursesPage()
+                        .openFirstCourse();
+
+        Assert.assertTrue(coursePage.isCoursePageDisplayed());
+    }
+
 }

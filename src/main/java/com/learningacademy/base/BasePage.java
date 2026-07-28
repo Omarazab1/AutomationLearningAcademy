@@ -4,6 +4,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class BasePage {
 
@@ -21,12 +22,18 @@ public class BasePage {
                 element
         );
     }
+    public void goBack() {
+        driver.navigate().back();
+    }
 
     /**
      * Finds and returns a web element.
      */
     protected WebElement find(By locator) {
         return driver.findElement(locator);
+    }
+    protected List<WebElement> finds(By locator) {
+        return driver.findElements(locator);
     }
 
     /**
