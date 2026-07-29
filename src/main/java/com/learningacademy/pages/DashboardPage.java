@@ -8,6 +8,8 @@ public class DashboardPage extends BasePage {
 
     // Locators
     private final By userMenu = By.id("user-menu-toggle");
+    private final By profileButton =
+            By.cssSelector("a[href*='user/profile.php']");
     private final By dashboardTitle = By.xpath("//h1[text()='Dashboard']");
     private final By logoutButton = By.cssSelector("a[href*='logout.php']");
     private final By myCourses =
@@ -19,10 +21,17 @@ public class DashboardPage extends BasePage {
     }
 
     // Actions
-    public void openUserMenu() {
+    public DashboardPage openUserMenu() {
         click(userMenu);
+        return this;
     }
+    public ProfilePage openProfilePage() {
 
+        openUserMenu();
+        click(profileButton);
+
+        return new ProfilePage(driver);
+    }
 //PageChaining
     public HomePage logout() {
         openUserMenu();
