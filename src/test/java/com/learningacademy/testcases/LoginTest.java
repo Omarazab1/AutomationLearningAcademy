@@ -1,6 +1,6 @@
 package com.learningacademy.testcases;
 
-import com.learningacademy.base.BaseTest;
+import com.learningacademy.Base.BaseTest;
 import com.learningacademy.dataProviders.UserDataProvider;
 import com.learningacademy.models.User;
 import com.learningacademy.models.Users;

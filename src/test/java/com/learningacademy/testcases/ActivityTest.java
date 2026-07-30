@@ -1,5 +1,5 @@
 package com.learningacademy.testcases;
-import com.learningacademy.base.BaseTest;
+import com.learningacademy.Base.BaseTest;
 import com.learningacademy.models.Users;
 import com.learningacademy.pages.ActivityPage;
 import com.learningacademy.utils.ScreenshotUtil;

@@ -1,12 +1,11 @@
 package com.learningacademy.testcases;
 
-import com.learningacademy.base.BaseTest;
+import com.learningacademy.Base.BaseTest;
 import com.learningacademy.models.Users;
 import com.learningacademy.pages.CoursePage;
 import com.learningacademy.pages.MyCoursesPage;
 import com.learningacademy.pages.DashboardPage;
 import com.learningacademy.utils.ScreenshotUtil;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
