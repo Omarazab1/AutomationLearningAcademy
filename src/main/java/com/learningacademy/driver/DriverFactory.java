@@ -4,6 +4,7 @@ import com.learningacademy.utils.ConfigReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -20,6 +21,12 @@ public class DriverFactory {
 
             switch (browser.toLowerCase()) {
                 case "chrome":
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--headless=new");
+                    options.addArguments("--no-sandbox");
+                    options.addArguments("--disable-dev-shm-usage");
+                    options.addArguments("--disable-gpu");
+                    options.addArguments("--remote-allow-origins=*");
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     break;
