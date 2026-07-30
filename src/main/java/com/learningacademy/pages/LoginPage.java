@@ -4,6 +4,8 @@ import com.learningacademy.base.BasePage;
 import com.learningacademy.models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class LoginPage extends BasePage {
@@ -13,7 +15,6 @@ public class LoginPage extends BasePage {
     private final By passwordField = By.id("password");
     private final By loginButton = By.id("loginbtn");
     private final By loginErrorMessage = By.id("loginerrormessage");
-
     // Constructor
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -21,7 +22,7 @@ public class LoginPage extends BasePage {
 
     // Actions
     public DashboardPage login(User user) {
-
+        logger.info("Logging in as {}", user.getUsername());
         enterText(usernameField, user.getUsername());
         enterText(passwordField, user.getPassword());
         click(loginButton);

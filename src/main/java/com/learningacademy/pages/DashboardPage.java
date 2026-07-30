@@ -3,6 +3,8 @@ package com.learningacademy.pages;
 import com.learningacademy.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DashboardPage extends BasePage {
 
@@ -14,7 +16,6 @@ public class DashboardPage extends BasePage {
     private final By logoutButton = By.cssSelector("a[href*='logout.php']");
     private final By myCourses =
             By.cssSelector("a[href*='courses.php']");
-
     // Constructor
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -35,6 +36,7 @@ public class DashboardPage extends BasePage {
 //PageChaining
     public HomePage logout() {
         openUserMenu();
+        logger.info("User logged out successfully");
         click(logoutButton);
         return new HomePage(driver);
     }
@@ -48,6 +50,7 @@ public class DashboardPage extends BasePage {
         return isDisplayed(userMenu);
     }
     public MyCoursesPage openCoursesPage() {
+        logger.info("open Courses Page successfully");
         click(myCourses);
         return new MyCoursesPage(driver);
     }

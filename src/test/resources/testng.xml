@@ -15,8 +15,7 @@
 
     </test>
     <listeners>
-
         <listener class-name="com.learningacademy.listeners.RetryListener"/>
-
+        <listener class-name="com.learningacademy.listeners.ScreenshotListener"/>
     </listeners>
 </suite>

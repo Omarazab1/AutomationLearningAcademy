@@ -7,11 +7,16 @@ import com.learningacademy.models.Users;
 import com.learningacademy.pages.DashboardPage;
 import com.learningacademy.pages.LoginPage;
 import com.learningacademy.utils.ConfigReader;
+import com.learningacademy.utils.ScreenshotUtil;
 import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
-
+    @BeforeSuite
+    public void cleanScreenshotsFolder() {
+        ScreenshotUtil.cleanFolder();
+    }
     @Test(dataProvider = "validUsers",
             dataProviderClass = UserDataProvider.class)
     public void validUserShouldLoginSuccessfully(User user) {

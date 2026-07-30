@@ -4,6 +4,8 @@ import com.learningacademy.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CoursePage extends BasePage {
     private final By courseTitle =
@@ -48,6 +50,7 @@ public class CoursePage extends BasePage {
     public ActivityPage openFirstActivity() {
         scrollTo(firstActivity);
         wait.until(ExpectedConditions.elementToBeClickable(firstActivity));
+        logger.info("Open firstActivity Successfully");
         click(firstActivity);
         return new ActivityPage(driver);
     }

@@ -3,10 +3,16 @@ package com.learningacademy.testcases;
 import com.learningacademy.base.BaseTest;
 import com.learningacademy.models.Users;
 import com.learningacademy.pages.ProfilePage;
+import com.learningacademy.utils.ScreenshotUtil;
 import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 public class ProfileTest extends BaseTest {
+    @BeforeSuite
+    public void cleanScreenshotsFolder() {
+        ScreenshotUtil.cleanFolder();
+    }
     @Test(
             description = "Verify that a logged-in user can open the profile page successfully."
     )

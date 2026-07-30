@@ -1,10 +1,10 @@
 package com.learningacademy.pages;
-
 import com.learningacademy.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class MyCoursesPage extends BasePage {
         throw new RuntimeException("Course not found: " + courseName);
     }
     public MyCoursesPage searchCourse(String courseName) {
-
+        logger.info("Searching for course {}", courseName);
         enterText(searchInput, courseName);
         wait.until(driver ->
                 finds(courseCards).size() != 10

@@ -1,13 +1,17 @@
 package com.learningacademy.base;
+import com.learningacademy.pages.LoginPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.List;
 
 public class BasePage {
-
+    protected final Logger logger =
+            LoggerFactory.getLogger(getClass());
     protected WebDriver driver;
     protected WebDriverWait wait;
     public BasePage(WebDriver driver) {

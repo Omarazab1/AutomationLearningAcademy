@@ -24,30 +24,30 @@ public class ProfilePage extends BasePage {
         super(driver);
     }
     public boolean isAtProfilePage() {
+        logger.info("Verifying Profile Page");
         return getCurrentUrl().contains("/user/profile.php");
     }
     public boolean isProfileNameDisplayed() {
         return isDisplayed(profileName);
-    }public String getProfileName() {
+    }
+    public String getProfileName() {
         return getText(profileName);
-    }public boolean isProfileImageDisplayed() {
+    }
+    public boolean isProfileImageDisplayed() {
         return isDisplayed(profileImage);
-    }public boolean isProfileEmailDisplayed() {
+    }
+    public boolean isProfileEmailDisplayed() {
         return isDisplayed(profileEmail);
-    }public String getProfileEmail() {
-        return getText(profileEmail);
-    }public boolean isBreadcrumbDisplayed() {
-        return isDisplayed(breadcrumb);
-    }public boolean isEditProfileButtonDisplayed() {
+    }
+    public boolean isEditProfileButtonDisplayed() {
         return isDisplayed(editProfileButton);
-    }public ProfilePage openEditProfile() {
-
+    }
+    public ProfilePage openEditProfile() {
         click(editProfileButton);
-
         return this;
     }
     public boolean isAtEditProfilePage() {
-
+        logger.info("Verifying Edit Profile Page");
         return getCurrentUrl().contains("/user/edit.php");
     }
 }
