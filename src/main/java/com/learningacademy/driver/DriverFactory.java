@@ -28,7 +28,7 @@ public class DriverFactory {
                     options.addArguments("--disable-gpu");
                     options.addArguments("--remote-allow-origins=*");
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    driver = new ChromeDriver(options);
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();

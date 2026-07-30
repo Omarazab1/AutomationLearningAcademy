@@ -1,5 +1,4 @@
 package com.learningacademy.base;
-import com.learningacademy.pages.LoginPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
