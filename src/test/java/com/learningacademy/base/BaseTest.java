@@ -1,4 +1,4 @@
-package com.learningacademy.Base;
+package com.learningacademy.base;
 import com.learningacademy.managers.PageManager;
 import com.learningacademy.pages.LoginPage;
 import com.learningacademy.utils.AllureUtil;
