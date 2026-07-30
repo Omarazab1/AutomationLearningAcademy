@@ -2,12 +2,17 @@ package com.learningacademy.testcases;
 import com.learningacademy.base.BaseTest;
 import com.learningacademy.models.Users;
 import com.learningacademy.pages.ActivityPage;
+import com.learningacademy.utils.ScreenshotUtil;
 import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 
 public class ActivityTest extends BaseTest {
-
+    @BeforeSuite
+    public void cleanScreenshotsFolder() {
+        ScreenshotUtil.cleanFolder();
+    }
     @Test
     public void givenStudentWhenOpenFirstActivityThenActivityPageShouldBeDisplayed() {
         ActivityPage activityPage =

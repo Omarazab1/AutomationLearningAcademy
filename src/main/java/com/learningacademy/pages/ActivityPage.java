@@ -34,6 +34,7 @@ public class ActivityPage extends BasePage {
         return isDisplayed(activityIcon);
     }
    public ActivityPage clickMarkAsDoneButton(){
+       logger.info("Marking activity as done");
         click(markAsDoneButton);
         return this;
    }
