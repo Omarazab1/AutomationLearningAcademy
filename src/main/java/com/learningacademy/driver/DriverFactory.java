@@ -1,6 +1,7 @@
 package com.learningacademy.driver;
 
 import com.learningacademy.utils.ConfigReader;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -19,12 +20,15 @@ public class DriverFactory {
 
             switch (browser.toLowerCase()) {
                 case "chrome":
+                    WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     break;
                 case "firefox":
+                    WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
                     break;
                 case "edge":
+                    WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
                     break;
                 default:
@@ -34,7 +38,6 @@ public class DriverFactory {
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-            // حفظ الـ driver داخل الـ ThreadLocal
             driverThreadLocal.set(driver);
         }
     }
@@ -49,7 +52,7 @@ public class DriverFactory {
     public static void quitDriver() {
         if (driverThreadLocal.get() != null) {
             driverThreadLocal.get().quit();
-            driverThreadLocal.remove(); // مسح الـ Reference تماماً من الذاكرة
+            driverThreadLocal.remove();
         }
     }
 }
