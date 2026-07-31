@@ -17,7 +17,7 @@ public class BasePage {
     private boolean isHeadless;
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         this.isHeadless = Boolean.parseBoolean(ConfigReader.getProperty("headless"));
     }
     protected void scrollTo(By locator) {
@@ -51,11 +51,13 @@ public class BasePage {
      * Clear the field then enter text.
      */
     protected void enterText(By locator, String text) {
+        // 1. انتظر حتى يصبح العنصر قابلاً للتفاعل (موجود، مرئي، ومُمكّن)
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
 
-        WebElement element =
-                wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-
+        // 2. نظف الحقل (اختياري لكن مفيد)
         element.clear();
+
+        // 3. اكتب النص
         element.sendKeys(text);
     }
 
