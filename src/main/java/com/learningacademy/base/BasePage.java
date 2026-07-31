@@ -1,4 +1,5 @@
 package com.learningacademy.base;
+import com.learningacademy.utils.ConfigReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,9 +14,11 @@ public class BasePage {
             LoggerFactory.getLogger(getClass());
     protected WebDriver driver;
     protected WebDriverWait wait;
+    private boolean isHeadless;
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.isHeadless = Boolean.parseBoolean(ConfigReader.getProperty("headless"));
     }
     protected void scrollTo(By locator) {
         WebElement element = find(locator);
@@ -73,7 +76,18 @@ public class BasePage {
         wait.until(ExpectedConditions.urlContains(value));
 
     }
-
+    public void maximizeWindow() {
+        if (!isHeadlessMode()) { // أضف هذه الدالة للتحقق
+            driver.manage().window().maximize();
+        } else {
+            // في وضع Headless، قم بتعيين حجم معقول
+            driver.manage().window().setSize(new Dimension(1920, 1080));
+        }
+    }
+    private boolean isHeadlessMode() {
+        // يمكنك قراءة القيمة من ملف الخصائص
+        return Boolean.parseBoolean(ConfigReader.getProperty("headless"));
+    }
     /**
      * Returns the text of an element.
      */

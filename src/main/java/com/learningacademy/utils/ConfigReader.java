@@ -33,8 +33,11 @@ public class ConfigReader {
     public static String getPassword() {
         return properties.getProperty("password");
     }
+
     public static String getLoginErrorMessage() {
         return properties.getProperty("login.error.message");
     }
-
+    public static String getProperty(String key) {
+        return properties.getProperty(key);
+    }
 }

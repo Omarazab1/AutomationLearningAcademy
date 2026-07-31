@@ -17,18 +17,22 @@ public class DriverFactory {
     public static void initDriver() {
         if (driverThreadLocal.get() == null) {
             String browser = ConfigReader.getBrowser();
+            ChromeOptions options = new ChromeOptions();
             WebDriver driver;
             switch (browser.toLowerCase()) {
                 case "chrome":
-                    ChromeOptions options = new ChromeOptions();
-                    options.addArguments("--headless=new");
+                if (Boolean.parseBoolean(ConfigReader.getProperty("headless"))) {
+                    options.addArguments("--headless");
+                    options.addArguments("--window-size=1920,1080");
                     options.addArguments("--no-sandbox");
                     options.addArguments("--disable-dev-shm-usage");
                     options.addArguments("--disable-gpu");
                     options.addArguments("--remote-allow-origins=*");
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver(options);
-                    break;
+                }
+
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver(options);
+                break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
@@ -43,7 +47,6 @@ public class DriverFactory {
 
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
             driverThreadLocal.set(driver);
         }
     }
