@@ -51,6 +51,8 @@ public class DashboardPage extends BasePage {
     }
     public MyCoursesPage openCoursesPage() {
         logger.info("open Courses Page successfully");
+        logger.info("Trying to open My Courses...");
+        logger.info("Current URL: {}", driver.getCurrentUrl());
         click(myCourses);
         return new MyCoursesPage(driver);
     }

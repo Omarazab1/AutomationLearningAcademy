@@ -33,6 +33,8 @@ public class LoginPage extends BasePage {
 
         enterText(usernameField, username);
         enterText(passwordField, password);
+        logger.info("Current URL: {}", driver.getCurrentUrl());
+        logger.info("Page Title: {}", driver.getTitle());
         click(loginButton);
 
         return this;
@@ -47,6 +49,7 @@ public class LoginPage extends BasePage {
     }
 
     public void clickLoginButton() {
+
         click(loginButton);
     }
 
