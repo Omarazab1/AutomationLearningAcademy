@@ -2,6 +2,7 @@ package com.learningacademy.pages;
 
 import com.learningacademy.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
@@ -25,6 +26,10 @@ public class CoursePage extends BasePage {
         super(driver);
     }
     public int getActivitiesCount() {
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(activities)
+        );
+
         return finds(activities).size();
     }
     public boolean isGeneralSectionDisplayed() {
@@ -38,7 +43,19 @@ public class CoursePage extends BasePage {
         return isDisplayed(backgroundContent);
     }
     public boolean isCoursePageDisplayed() {
-        return getCurrentUrl().contains("/course/view.php");
+
+        try {
+
+            wait.until(ExpectedConditions.urlContains("/course/view.php"));
+
+            return true;
+
+        } catch (TimeoutException e) {
+
+            return false;
+
+        }
+
     }
 
     public boolean isCourseTitleDisplayed() {

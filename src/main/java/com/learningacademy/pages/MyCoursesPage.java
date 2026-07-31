@@ -3,6 +3,7 @@ import com.learningacademy.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +28,12 @@ public class MyCoursesPage extends BasePage {
         super(driver);
     }
     private List<WebElement> getCourseCards() {
-        return driver.findElements(courseCards);
+
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(courseCards)
+        );
+
+        return finds(courseCards);
     }
 
     // Actions
@@ -37,7 +43,11 @@ public class MyCoursesPage extends BasePage {
 
             if (card.getText().contains(courseName)) {
 
-                card.findElement(By.tagName("a")).click();
+                WebElement link = card.findElement(By.tagName("a"));
+
+                wait.until(ExpectedConditions.elementToBeClickable(link));
+
+                link.click();
 
                 return new CoursePage(driver);
             }

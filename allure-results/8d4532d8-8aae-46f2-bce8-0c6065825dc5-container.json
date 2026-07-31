@@ -1,1 +1,0 @@
-{"uuid":"8d4532d8-8aae-46f2-bce8-0c6065825dc5","name":"Default Suite","children":["cbe24b94-f0bb-4a80-a782-d515f332bb25"],"befores":[{"name":"cleanScreenshotsFolder","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1785388960720,"stop":1785388960737}],"afters":[],"start":1785388960671,"stop":1785388974609}
