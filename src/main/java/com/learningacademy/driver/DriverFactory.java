@@ -18,7 +18,6 @@ public class DriverFactory {
         if (driverThreadLocal.get() == null) {
             String browser = ConfigReader.getBrowser();
             WebDriver driver;
-
             switch (browser.toLowerCase()) {
                 case "chrome":
                     ChromeOptions options = new ChromeOptions();
