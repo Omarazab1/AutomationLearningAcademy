@@ -51,14 +51,16 @@ public class BasePage {
      * Clear the field then enter text.
      */
     protected void enterText(By locator, String text) {
-        // 1. انتظر حتى يصبح العنصر قابلاً للتفاعل (موجود، مرئي، ومُمكّن)
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
 
-        // 2. نظف الحقل (اختياري لكن مفيد)
+        WebElement element =
+                wait.until(ExpectedConditions.refreshed(
+                        ExpectedConditions.elementToBeClickable(locator)
+                ));
+
         element.clear();
 
-        // 3. اكتب النص
         element.sendKeys(text);
+
     }
 
     /**

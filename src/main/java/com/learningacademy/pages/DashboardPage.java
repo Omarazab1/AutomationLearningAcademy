@@ -15,7 +15,7 @@ public class DashboardPage extends BasePage {
     private final By dashboardTitle = By.xpath("//h1[text()='Dashboard']");
     private final By logoutButton = By.cssSelector("a[href*='logout.php']");
     private final By myCourses =
-            By.cssSelector("a[href*='courses.php']");
+            By.xpath("//a[contains(@href,'courses.php')]");
     // Constructor
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -53,6 +53,7 @@ public class DashboardPage extends BasePage {
         logger.info("open Courses Page successfully");
         logger.info("Trying to open My Courses...");
         logger.info("Current URL: {}", driver.getCurrentUrl());
+        logger.info("Dashboard URL = {}", getCurrentUrl());
         click(myCourses);
         return new MyCoursesPage(driver);
     }

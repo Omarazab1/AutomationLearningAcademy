@@ -49,7 +49,9 @@ public class LoginPage extends BasePage {
     }
 
     public void clickLoginButton() {
+        logger.info("URL After Login = {}", driver.getCurrentUrl());
 
+        logger.info("Title After Login = {}", driver.getTitle());
         click(loginButton);
     }
 

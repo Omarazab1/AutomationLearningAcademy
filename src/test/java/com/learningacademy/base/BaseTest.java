@@ -25,6 +25,7 @@ public class BaseTest {
         DriverFactory.initDriver();
         driver = DriverFactory.getDriver();
         driver.get(ConfigReader.getBaseUrl());
+        System.out.println(driver.getCurrentUrl());
         pages = new PageManager(driver);
         }
         @AfterMethod
