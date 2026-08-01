@@ -67,8 +67,7 @@ public class CoursePage extends BasePage {
     public ActivityPage openFirstActivity() {
         scrollTo(firstActivity);
         wait.until(ExpectedConditions.elementToBeClickable(firstActivity));
-        logger.info("Open firstActivity Successfully");
-        click(firstActivity);
+        find(firstActivity).click();
         return new ActivityPage(driver);
     }
     public String getCourseTitle() {
