@@ -22,12 +22,15 @@ public class DriverFactory {
             switch (browser.toLowerCase()) {
                 case "chrome":
                 if (Boolean.parseBoolean(ConfigReader.getProperty("headless"))) {
-                    options.addArguments("--headless");
+                    options.addArguments("--headless=new");
                     options.addArguments("--window-size=1920,1080");
                     options.addArguments("--no-sandbox");
                     options.addArguments("--disable-dev-shm-usage");
                     options.addArguments("--disable-gpu");
                     options.addArguments("--remote-allow-origins=*");
+                    options.addArguments("--disable-extensions");
+                    options.addArguments("--disable-software-rasterizer");
+                    options.addArguments("--lang=en-US");
                 }
 
                 WebDriverManager.chromedriver().setup();
@@ -45,7 +48,9 @@ public class DriverFactory {
                     throw new RuntimeException("Unsupported browser: " + browser);
             }
 
-            driver.manage().window().maximize();
+            if (!Boolean.parseBoolean(ConfigReader.getProperty("headless"))) {
+                driver.manage().window().maximize();
+            }
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             driverThreadLocal.set(driver);
         }
