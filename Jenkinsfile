@@ -16,10 +16,10 @@ pipeline {
 
     post {
         always {
-            // حفظ التقرير العادي ونتائج Allure
+            // حفظ تقرير HTML ونتائج Allure
             archiveArtifacts artifacts: 'target/surefire-reports/*.html, allure-results/**', allowEmptyArchive: true
 
-            // توليد تقرير Allure
+            // توليد تقرير Allure التفاعلي
             allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
         }
         success {
