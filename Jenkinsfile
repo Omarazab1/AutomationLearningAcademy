@@ -29,7 +29,10 @@ pipeline {
     post {
 
         always {
+            archiveArtifacts artifacts: 'target/surefire-reports/*.html, allure-results/**', allowEmptyArchive: true
+
             allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        }
         }
         success {
             echo 'Build Passed ✅'
