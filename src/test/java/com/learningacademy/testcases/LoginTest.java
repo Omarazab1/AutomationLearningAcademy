@@ -70,20 +70,20 @@ public class LoginTest extends BaseTest {
                 ConfigReader.getLoginErrorMessage()
         );
     }
-//    @Test
-//    public void loginShouldFailWithEmptyUsername() {
-//
-//        openLoginPage().login("", Users.STUDENT.getPassword());
-//
-//        Assert.assertTrue(
-//                pages.loginPage().isLoginErrorDisplayed()
-//        );
-//
-//        Assert.assertEquals(
-//                pages.loginPage().getLoginErrorMessage(),
-//                ConfigReader.getLoginErrorMessage()
-//        );
-//    }
+    @Test
+    public void loginShouldFailWithEmptyUsername() {
+
+        openLoginPage().login("", Users.STUDENT.getPassword());
+
+        Assert.assertTrue(
+                pages.loginPage().isLoginErrorDisplayed()
+        );
+
+        Assert.assertEquals(
+                pages.loginPage().getLoginErrorMessage(),
+                ConfigReader.getLoginErrorMessage()
+        );
+    }
     @Test
     public void givenEmptyPasswordWhenLoginThenValidationMessageShouldBeDisplayed() {
 
