@@ -13,6 +13,7 @@ public class ProfileTest extends BaseTest {
     public void cleanScreenshotsFolder() {
         ScreenshotUtil.cleanFolder();
     }
+
     @Test(
             description = "Verify that a logged-in user can open the profile page successfully."
     )
